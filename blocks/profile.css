@@ -68,3 +68,10 @@
 .profile__button:hover {
   opacity: 60%;
 }
+
+@media screen and (max-widht: 480px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+  }
+}
