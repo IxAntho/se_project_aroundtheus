@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   width: 100%;
+  margin-bottom: 51px;
 }
 
 .profile__photo {
@@ -58,4 +59,12 @@
   height: 50px;
   background: transparent url(../images/add-button.svg) center no-repeat;
   margin-left: auto;
+}
+
+.profile__button {
+  transition: opacity 0.25s ease-in-out;
+}
+
+.profile__button:hover {
+  opacity: 60%;
 }
