@@ -9,20 +9,19 @@
 
 @media screen and (max-width: 885px) {
   .page__content {
-    margin: 0 62;
-    max-width: calc(100% - 125);
-    width: 100%;
+    margin: 0 auto;
+    max-width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 580px) {
   .page__content {
-    margin: 0 19;
-    max-width: calc(100% - 38px);
-    width: 100%;
+    margin: 0 auto;
+    max-width: 100%;
     padding: 28px 0 36px 0;
   }
 }

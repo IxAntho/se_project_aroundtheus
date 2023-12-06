@@ -39,7 +39,6 @@
   height: 24px;
   align-self: center;
   background: #000 url(../images/edit-button.svg) center no-repeat;
-
   grid-area: button;
 }
 
@@ -77,9 +76,6 @@
     max-width: 750px;
     width: 100%;
   }
-  .profile__info {
-    width: 100%;
-  }
 
   .profile__photo {
     margin: 0;
@@ -89,9 +85,9 @@
     margin-left: 10px;
     max-width: 380px;
     width: 100%;
-    column-gap: 0;
+    column-gap: 10px;
     row-gap: 14px;
-    grid-template-columns: 325px auto;
+    grid-template-columns: minmax(auto, 325px) min-content;
     align-items: center;
   }
 
@@ -116,7 +112,7 @@
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 580px) {
   .profile {
     flex-direction: column;
     align-items: center;
