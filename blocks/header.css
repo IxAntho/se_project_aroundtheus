@@ -14,14 +14,19 @@
   height: 100%;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 885px) {
+  .header {
+    max-width: 750px;
+    width: 100%;
+    margin: 0 0 40px 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
   .header {
     max-width: 282px;
     width: 100%;
-    background-color: #000;
     margin: 0 auto 38px auto;
-    padding: 0 0 41px 0;
-    border-bottom: solid 1px rgba(255, 255, 255, 0.3);
   }
 
   .header__logo {

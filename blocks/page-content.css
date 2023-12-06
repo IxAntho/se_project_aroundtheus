@@ -7,13 +7,22 @@
   padding: 45px 0 60px 0;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 885px) {
   .page__content {
-    max-width: 280px;
+    margin: 0 62;
+    max-width: calc(100% - 125);
     width: 100%;
-    font-family: "Inter", "Arial", "Helvetica", sans-serif;
-    font-weight: 400;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .page__content {
+    margin: 0 19;
+    max-width: calc(100% - 38px);
+    width: 100%;
     padding: 28px 0 36px 0;
   }
 }
