@@ -60,3 +60,13 @@
   opacity: 50%;
   transform: scale(1.1);
 }
+
+@media screen and (max-width: 480px) {
+  .card__button {
+    background: transparent url(../images/card-button.svg) center no-repeat;
+    width: 21px;
+    height: 18px;
+    border: none;
+    padding: 0;
+  }
+}
