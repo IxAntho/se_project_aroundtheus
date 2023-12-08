@@ -126,9 +126,6 @@
 
   .profile__info {
     max-width: 282px;
-    width: 100%;
-    column-gap: 10px;
-    row-gap: 14px;
     grid-template-columns: auto auto;
   }
 
@@ -137,18 +134,11 @@
     text-align: right;
   }
 
-  .profile__button_type_edit {
-    width: 18px;
-    height: 18px;
-  }
-
   .profile__user-description {
-    font-size: 14px;
     text-align: center;
   }
 
   .profile__button_type_add {
     margin: 36px 0 0 0;
-    width: 282px;
   }
 }
