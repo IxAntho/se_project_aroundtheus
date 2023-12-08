@@ -80,7 +80,6 @@
 @media screen and (max-width: 885px) {
   .profile {
     max-width: 750px;
-    width: 100%;
   }
 
   .profile__photo {
@@ -94,12 +93,10 @@
     column-gap: 10px;
     row-gap: 14px;
     grid-template-columns: minmax(auto, 325px) minmax(auto, 20px);
-    align-items: center;
   }
 
   .profile__heading {
     font-size: 35px;
-    text-align: left;
   }
 
   .profile__button_type_edit {
@@ -109,7 +106,6 @@
 
   .profile__user-description {
     font-size: 14px;
-    text-align: left;
   }
 
   .profile__button_type_add {
@@ -121,7 +117,6 @@
 @media screen and (max-width: 580px) {
   .profile {
     flex-direction: column;
-    align-items: center;
     margin-bottom: 36px;
   }
 
@@ -135,7 +130,6 @@
     column-gap: 10px;
     row-gap: 14px;
     grid-template-columns: auto auto;
-    align-items: center;
   }
 
   .profile__heading {
