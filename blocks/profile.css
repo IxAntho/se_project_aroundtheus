@@ -19,7 +19,7 @@
   grid-template-areas:
     "title button"
     "description description";
-  grid-template-columns: minmax(auto, 375px) auto;
+  grid-template-columns: minmax(auto, 375px) minmax(auto, 20px);
   align-items: center;
   column-gap: 13px;
 }
@@ -93,7 +93,7 @@
     width: 100%;
     column-gap: 10px;
     row-gap: 14px;
-    grid-template-columns: minmax(auto, 325px) min-content;
+    grid-template-columns: minmax(auto, 325px) minmax(auto, 20px);
     align-items: center;
   }
 
