@@ -16,6 +16,10 @@ This project is the first step of a social media website's prototype, it was mad
 - Responsive design
 - CSS media queries
 
+## Website
+Link to the website:
+-[Around the U.S.](https://ixantho.github.io/se_project_aroundtheus/)
+
 ## Figma
 
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
