@@ -6,63 +6,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
   grid-template-rows: 1fr 1fr;
-  grid-auto-rows: 361px;
+  grid-auto-rows: min-content;
   width: 100%;
   grid-gap: 20px 17px;
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  width: 282px;
-  height: 361px;
-  border-radius: 10px;
-  background-color: #fff;
-  color: #000;
-}
-
-.card__image {
-  width: 100%;
-  height: 282px;
-  border-radius: 10px 10px 0 0;
-  align-self: flex-start;
-}
-
-.card__description {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 20px;
-}
-
-.card__name {
-  font-family: "Inter", "Arial", "Helvetica", sans-serif;
-  font-size: 24px;
-  font-weight: 900;
-  line-height: 29px;
-  margin: 0;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 215px;
-}
-
-.card__button {
-  background: transparent url(../images/card-button.svg) center no-repeat;
-  width: 21px;
-  height: 18px;
-  border: none;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-  padding: 0;
-}
-
-.card__button:hover {
-  opacity: 50%;
-  transform: scale(1.1);
 }
 
 @media screen and (max-width: 885px) {
@@ -74,13 +23,5 @@
 @media screen and (max-width: 580px) {
   .cards {
     max-width: 282px;
-  }
-
-  .card__button {
-    background: transparent url(../images/card-button.svg) center no-repeat;
-    width: 21px;
-    height: 18px;
-    border: none;
-    padding: 0;
   }
 }

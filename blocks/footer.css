@@ -1,6 +1,9 @@
 .footer {
   margin-top: 67px;
   margin-right: auto;
+}
+
+.footer__copyright {
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -18,6 +21,9 @@
 @media screen and (max-width: 580px) {
   .footer {
     margin-top: 48px;
+  }
+
+  .footer__copyright {
     font-size: 14px;
   }
 }
