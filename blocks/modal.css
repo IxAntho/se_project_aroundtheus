@@ -1,5 +1,4 @@
 .modal {
-  display: none;
   position: fixed;
   top: 0;
   width: 100%;
@@ -9,8 +8,9 @@
   background-size: cover;
 }
 
-.modal_opened {
-  display: block;
+.modal_enabled {
+  display: none;
+  transition: all 2s ease;
 }
 
 .modal__form-container {
@@ -22,6 +22,7 @@
   top: 20%;
   left: 50%;
   transform: translate(-50%, 0);
+  /* lines 21 - 24 for responsive fixed positioning to the center*/
 }
 
 @media screen and (max-width: 585px) {
