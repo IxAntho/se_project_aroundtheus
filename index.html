@@ -52,6 +52,21 @@
           ></button>
         </section>
         <section class="cards">
+          <template id="cardTemplate">
+            <li class="card">
+              <img class="card__image" />
+              <div class="card__description">
+                <h2 class="card__name"></h2>
+                <button
+                  aria-label="Like button"
+                  class="card__button"
+                  type="button"
+                ></button>
+              </div>
+            </li>
+          </template>
+          <ul class="cards__list"></ul>
+          <!--
           <ul class="cards__list">
             <li class="card">
               <img
@@ -144,7 +159,7 @@
               </div>
             </li>
           </ul>
-        </section>
+        --></section>
         <section class="modal modal_enabled">
           <div class="modal__form-container">
             <form class="form">
