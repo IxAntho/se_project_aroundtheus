@@ -74,6 +74,7 @@ function getCardElement(data) {
   console.log(cardImage.src, cardImage.alt);
   cardName.textContent = data[count].name;
   console.log(cardName.textContent);
+  //Line below goes with the add button event listener if for loop is erased
   /*if (count < initialCards.length) {
     count += 1;
   }*/
