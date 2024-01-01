@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -39,60 +39,52 @@ const profileAbout = document.querySelector(".profile__user-description");
 const inputName = document.querySelector(".form__input_name");
 const inputAbout = document.querySelector(".form__input_about");
 const profileFormElement = document.querySelector(".form");
-let cardTemplate = document.querySelector("#cardTemplate").content;
+const cardTemplate = document.querySelector("#cardTemplate").content;
 const addButton = document.querySelector(".profile__button_type_add");
-let cardsGrid = document.querySelector(".cards__list");
-let count = 0;
+const cardsGrid = document.querySelector(".cards__list");
+const count = 0;
+
+function toggleModal() {
+  modal.classList.toggle("modal_opened");
+}
 
 editButton.addEventListener("click", function (evt) {
-  modal.classList.toggle("modal_enabled");
+  toggleModal();
   console.log(modal.classList, "Modal's classes");
   inputName.value = profileName.textContent;
   inputAbout.value = profileAbout.textContent;
 });
 closeButton.addEventListener("click", function (evt) {
-  modal.classList.toggle("modal_enabled");
+  toggleModal();
 });
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileAbout.textContent = inputAbout.value;
-  modal.classList.toggle("modal_enabled");
+  toggleModal();
 }
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
-function getCardElement(data) {
+function getCardElement(cardName, cardImage, cardAlt) {
   console.log("Something");
   const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardName = cardElement.querySelector(".card__name");
+  const elementImage = cardElement.querySelector(".card__image");
+  const elementName = cardElement.querySelector(".card__name");
 
-  cardImage.src = data[count].link;
-  cardImage.alt = data[count].alt;
-  console.log(cardImage.src, cardImage.alt);
-  cardName.textContent = data[count].name;
-  console.log(cardName.textContent);
-  //Line below goes with the add button event listener if for loop is erased
-  /*if (count < initialCards.length) {
-    count += 1;
-  }*/
+  elementImage.src = cardImage;
+  elementImage.alt = cardAlt;
+  console.log(elementImage.src, elementImage.alt);
+  elementName.textContent = cardName;
+  console.log(elementName.textContent);
+
   return cardElement;
 }
-//add button event listener
-/*addButton.addEventListener("click", function (evt) {
-  cardsGrid.prepend(getCardElement(initialCards));
-});
-*/
 
-//automatic cards rendering
-for (count; count < initialCards.length; count++) {
-  cardsGrid.prepend(getCardElement(initialCards));
-}
-
-//Could also be this way? ->
-/* initialCards.forEach(function (cardData) {
-  cardsGrid.prepend(getCardElement(cardData));
+initialCards.forEach(function (card) {
+  const cardName = card.name;
+  const cardImage = card.link;
+  const cardAlt = card.alt;
+  cardsGrid.prepend(getCardElement(cardName, cardImage, cardAlt));
 });
-*/
