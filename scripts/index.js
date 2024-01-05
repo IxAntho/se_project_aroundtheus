@@ -1,73 +1,51 @@
 const initialCards = [
   {
-    name: "Yosemite Valley",
+    name: ["Yosemite Valley", "Yosemite valley photo"],
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-    alt: "Yosemite valley photo",
   },
   {
-    name: "Lake Louise",
+    name: ["Lake Louise", "Lake Louise photo"],
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-    alt: "Lake Louise photo",
   },
   {
-    name: "Bald mountains",
+    name: ["Bald mountains", "Bald Mountains photo"],
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-    alt: "Bald Mountains photo",
   },
   {
-    name: "Latemar",
+    name: ["Latemar", "Latemar photo"],
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-    alt: "Latemar photo",
   },
   {
-    name: "Vanoise National Park",
+    name: ["Vanoise National Park", "Vanoise National Park photo"],
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-    alt: "Vanoise National Park photo",
   },
   {
-    name: "Lago di Barises",
+    name: ["Lago di Barises", "Lago di Barises photo"],
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-    alt: "Lago di Braises photo",
   },
 ];
 
 const editButton = document.querySelector(".profile__button_type_edit");
-const closeButton = document.querySelector(".form__close-button");
+const newPlaceButton = document.querySelector(".profile__button_type_add");
+const closeButtonEdit = document.querySelector(".form__close-edit");
+const closeButtonNew = document.querySelector(".form__close-new");
 const modal = document.querySelector(".modal");
 const profileName = document.querySelector(".profile__heading");
 const profileAbout = document.querySelector(".profile__user-description");
 const inputName = document.querySelector(".form__input_name");
 const inputAbout = document.querySelector(".form__input_about");
-const profileFormElement = document.querySelector(".form");
+const inputPlace = document.querySelector(".form__input_place");
+const inputImage = document.querySelector(".form__input_image");
+const formEditProfile = document.querySelector(".form_type_edit-profile");
+const formNewPlace = document.querySelector(".form_type_new-place");
+const modalEditContainer = document.querySelector(".modal__edit-container");
+const modalNewContainer = document.querySelector(".modal__new-container");
 const cardTemplate = document.querySelector("#cardTemplate").content;
 const addButton = document.querySelector(".profile__button_type_add");
 const cardsGrid = document.querySelector(".cards__list");
 const count = 0;
 
-function toggleModal() {
-  modal.classList.toggle("modal_opened");
-}
-
-editButton.addEventListener("click", function (evt) {
-  toggleModal();
-  console.log(modal.classList, "Modal's classes");
-  inputName.value = profileName.textContent;
-  inputAbout.value = profileAbout.textContent;
-});
-closeButton.addEventListener("click", function (evt) {
-  toggleModal();
-});
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = inputName.value;
-  profileAbout.textContent = inputAbout.value;
-  toggleModal();
-}
-
-profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-
-function getCardElement(cardName, cardImage, cardAlt) {
+function getCardElement(cardName, cardImage, cardAlt = "Some Image") {
   console.log("Something");
   const cardElement = cardTemplate.cloneNode(true);
   const elementImage = cardElement.querySelector(".card__image");
@@ -82,9 +60,71 @@ function getCardElement(cardName, cardImage, cardAlt) {
   return cardElement;
 }
 
-initialCards.forEach(function (card) {
-  const cardName = card.name;
+initialCards.forEach((card) => {
+  const cardName = card.name[0];
   const cardImage = card.link;
-  const cardAlt = card.alt;
-  cardsGrid.prepend(getCardElement(cardName, cardImage, cardAlt));
+  const cardAlt = card.name[1];
+  cardsGrid.append(getCardElement(cardName, cardImage, cardAlt));
 });
+
+function renderLastCard() {
+  const lastIndex = initialCards.length - 1;
+  const lastCardName = initialCards[lastIndex].name;
+  const lastImage = initialCards[lastIndex].link;
+  const lastCardAlt = "";
+  cardsGrid.append(getCardElement(lastCardName, lastImage, lastCardAlt));
+  console.log("Image's name: ", lastCardName);
+}
+
+function toggleModal() {
+  modal.classList.toggle("modal_opened");
+}
+
+function toggleModalEdit() {
+  modal.classList.toggle("modal_opened");
+  modalNewContainer.classList.toggle("modal__container_hidden");
+}
+
+editButton.addEventListener("click", function (evt) {
+  toggleModalEdit();
+  inputName.value = profileName.textContent;
+  inputAbout.value = profileAbout.textContent;
+});
+closeButtonEdit.addEventListener("click", function (evt) {
+  toggleModalEdit();
+});
+
+function handleProfileFormEditSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = inputName.value;
+  profileAbout.textContent = inputAbout.value;
+  toggleModal();
+}
+
+formEditProfile.addEventListener("submit", handleProfileFormEditSubmit);
+
+function toggleModalNewPlace() {
+  modal.classList.toggle("modal_opened");
+  modalEditContainer.classList.toggle("modal__container_hiddenn");
+}
+
+newPlaceButton.addEventListener("click", function (evt) {
+  toggleModalNewPlace();
+});
+closeButtonNew.addEventListener("click", function (evt) {
+  toggleModalNewPlace();
+});
+
+function handleProfileFormNewSubmit(evt) {
+  evt.preventDefault();
+  const newPlace = {
+    name: inputPlace.value,
+    link: inputImage.value,
+  };
+  console.log("New card: ", inputPlace.value, inputImage.value);
+  initialCards.push(newPlace);
+  renderLastCard();
+  toggleModal();
+}
+
+formNewPlace.addEventListener("submit", handleProfileFormNewSubmit);

@@ -14,7 +14,11 @@
   transition: all 2s ease;
 }
 
-.modal__form-container {
+.modal__container_hidden {
+  display: none;
+}
+
+.modal__edit-container {
   max-width: 430px;
   width: 100%;
   background-color: #fff;
@@ -24,6 +28,17 @@
   left: 50%;
   transform: translate(-50%, 0);
   /* lines 21 - 24 for responsive fixed positioning to the center*/
+}
+
+.modal__new-container {
+  max-width: 430px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 @media screen and (max-width: 585px) {

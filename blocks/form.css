@@ -9,7 +9,7 @@
   text-align: left;
 }
 
-.form__close-button {
+.form__close-edit {
   background: transparent url(../images/close-icon.svg) center no-repeat;
   width: 40px;
   height: 40px;
@@ -18,11 +18,27 @@
   top: -40px;
   border: none;
   transition: opacity 0.35s ease-in-out;
+
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
 }
 
-.form__close-button:hover {
-  opacity: 0.6;
-  cursor: pointer;
+.form__close-new {
+  background: transparent url(../images/close-icon.svg) center no-repeat;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 430px;
+  top: -40px;
+  border: none;
+  transition: opacity 0.35s ease-in-out;
+
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
 }
 
 .form__heading {
@@ -55,7 +71,7 @@
   margin-bottom: 29px;
 }
 
-.form__save-button {
+.form__save-edit {
   max-width: 358px;
   width: 100%;
   max-height: 50px;
@@ -66,11 +82,29 @@
   border: none;
   padding: 15px 6px;
   transition: opacity 0.35s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
 }
 
-.form__save-button:hover {
-  opacity: 0.8;
-  cursor: pointer;
+.form__save-new {
+  max-width: 358px;
+  width: 100%;
+  max-height: 50px;
+  height: 100%;
+  background-color: #000;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  padding: 15px 6px;
+  transition: opacity 0.35s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
 }
 
 @media screen and (max-width: 585px) {

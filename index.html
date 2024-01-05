@@ -54,7 +54,7 @@
         <section class="cards">
           <template id="cardTemplate">
             <li class="card">
-              <img class="card__trash-button" />
+              <button class="card__trash-button"></button>
               <img class="card__image" />
               <div class="card__description">
                 <h2 class="card__name"></h2>
@@ -69,9 +69,9 @@
           <ul class="cards__list"></ul>
         </section>
         <section class="modal">
-          <div class="modal__form-container">
-            <form class="form">
-              <button type="button" class="form__close-button"></button>
+          <div class="modal__edit-container">
+            <form class="form form_type_edit-profile">
+              <button type="button" class="form__close-edit"></button>
               <h2 class="form__heading">Edit Profile</h2>
               <fieldset class="form__fieldset">
                 <input
@@ -85,7 +85,26 @@
                   placeholder="About me"
                 />
               </fieldset>
-              <button type="submit" class="form__save-button">Save</button>
+              <button type="submit" class="form__save-edit">Save</button>
+            </form>
+          </div>
+          <div class="modal__new-container">
+            <form class="form form_type_new-place">
+              <button type="button" class="form__close-new"></button>
+              <h2 class="form__heading">New Place</h2>
+              <fieldset class="form__fieldset">
+                <input
+                  type="text"
+                  class="form__input form__input_place"
+                  placeholder="Title"
+                />
+                <input
+                  type="url"
+                  class="form__input form__input_image"
+                  placeholder="Image link"
+                />
+              </fieldset>
+              <button type="submit" class="form__save-new">Save</button>
             </form>
           </div>
         </section>
