@@ -29,6 +29,7 @@ const editButton = document.querySelector(".profile__button_type_edit");
 const newPlaceButton = document.querySelector(".profile__button_type_add");
 const closeButtonEdit = document.querySelector(".form__close-edit");
 const closeButtonNew = document.querySelector(".form__close-new");
+
 const modal = document.querySelector(".modal");
 const profileName = document.querySelector(".profile__heading");
 const profileAbout = document.querySelector(".profile__user-description");
@@ -46,16 +47,13 @@ const cardsGrid = document.querySelector(".cards__list");
 const count = 0;
 
 function getCardElement(cardName, cardImage, cardAlt = "Some Image") {
-  console.log("Something");
   const cardElement = cardTemplate.cloneNode(true);
   const elementImage = cardElement.querySelector(".card__image");
   const elementName = cardElement.querySelector(".card__name");
 
   elementImage.src = cardImage;
   elementImage.alt = cardAlt;
-  console.log(elementImage.src, elementImage.alt);
   elementName.textContent = cardName;
-  console.log(elementName.textContent);
 
   return cardElement;
 }
@@ -73,8 +71,14 @@ function renderLastCard() {
   const lastImage = initialCards[lastIndex].link;
   const lastCardAlt = "";
   cardsGrid.append(getCardElement(lastCardName, lastImage, lastCardAlt));
-  console.log("Image's name: ", lastCardName);
 }
+
+const likeButtons = document.querySelectorAll(".card__like-button");
+likeButtons.forEach((likeButton) => {
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+});
 
 function toggleModal() {
   modal.classList.toggle("modal_opened");
@@ -116,14 +120,19 @@ closeButtonNew.addEventListener("click", function (evt) {
 });
 
 function handleProfileFormNewSubmit(evt) {
+  if (inputPlace.value == "" || inputImage == "") {
+    alert("Please fill in all fields");
+    return;
+  }
   evt.preventDefault();
   const newPlace = {
     name: inputPlace.value,
     link: inputImage.value,
   };
-  console.log("New card: ", inputPlace.value, inputImage.value);
   initialCards.push(newPlace);
   renderLastCard();
+  inputPlace.value = "";
+  inputImage.value = "";
   toggleModal();
 }
 
