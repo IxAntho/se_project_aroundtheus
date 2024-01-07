@@ -46,14 +46,73 @@ const addButton = document.querySelector(".profile__button_type_add");
 const cardsGrid = document.querySelector(".cards__list");
 const count = 0;
 
+const addTrashButtonListener = (trashButton) => {
+  trashButton.addEventListener("click", (event) => {
+    //Accessing the Button: Use event.currentTarget to reference the button that was clicked
+    const clickedButton = event.currentTarget;
+    //Finding the Parent Card Element which should be the card element in the grid.
+    const cardToRemove = clickedButton.closest(".card");
+
+    //if the element has been found
+    if (cardToRemove) {
+      const cardName = cardToRemove.querySelector(".card__name").textContent;
+      const indexToRemove = initialCards.findIndex(
+        (card) => card.name[0] === cardName
+      );
+
+      if (indexToRemove !== -1) {
+        initialCards.splice(indexToRemove, 1); // Remove current card element from the array
+        cardToRemove.remove(); // Remove current card element from the DOM
+        console.log(indexToRemove, initialCards);
+      }
+    } else {
+      console.log("Card element not found");
+    }
+  });
+};
+
+const addImageViewListener = (image) => {};
+
 function getCardElement(cardName, cardImage, cardAlt = "Some Image") {
   const cardElement = cardTemplate.cloneNode(true);
   const elementImage = cardElement.querySelector(".card__image");
   const elementName = cardElement.querySelector(".card__name");
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const trashButton = cardElement.querySelector(".card__trash-button");
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  /*
+  trashButton.addEventListener("click", (event) => {
+    //Accessing the Button: Use event.currentTarget to reference the button that was clicked
+    const clickedButton = event.currentTarget;
+    //Finding the Parent Card Element which should be the card element in the grid.
+    const cardToRemove = clickedButton.closest(".card");
+
+    //if the element has been found
+    if (cardToRemove) {
+      const cardName = cardToRemove.querySelector(".card__name").textContent;
+      const indexToRemove = initialCards.findIndex(
+        (card) => card.name[0] === cardName
+      );
+
+      if (indexToRemove !== -1) {
+        initialCards.splice(indexToRemove, 1); // Remove current card element from the array
+        cardToRemove.remove(); // Remove current card element from the DOM
+        console.log(indexToRemove, initialCards);
+      }
+    } else {
+      console.log("Card element not found");
+    }
+  });*/
 
   elementImage.src = cardImage;
   elementImage.alt = cardAlt;
   elementName.textContent = cardName;
+  addTrashButtonListener(trashButton);
+  addImageViewListener(elementImage);
 
   return cardElement;
 }
@@ -72,13 +131,6 @@ function renderLastCard() {
   const lastCardAlt = "";
   cardsGrid.append(getCardElement(lastCardName, lastImage, lastCardAlt));
 }
-
-const likeButtons = document.querySelectorAll(".card__like-button");
-likeButtons.forEach((likeButton) => {
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-});
 
 function toggleModal() {
   modal.classList.toggle("modal_opened");
@@ -134,6 +186,7 @@ function handleProfileFormNewSubmit(evt) {
   inputPlace.value = "";
   inputImage.value = "";
   toggleModal();
+  console.log(initialCards);
 }
 
 formNewPlace.addEventListener("submit", handleProfileFormNewSubmit);
