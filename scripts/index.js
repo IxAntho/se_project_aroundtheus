@@ -52,10 +52,8 @@ const inputName = document.querySelector(".form__input_name");
 const inputAbout = document.querySelector(".form__input_about");
 const inputPlace = document.querySelector(".form__input_place");
 const inputImage = document.querySelector(".form__input_image");
-const mainImageView = document.querySelector(".image-view-image").src;
-const imageTitle = document.querySelector(
-  ".image-view__image-name"
-).textContent;
+const mainImageView = document.querySelector(".image-view__image");
+const imageTitle = document.querySelector(".image-view__image-name");
 
 const addTrashButtonListener = (trashButton) => {
   trashButton.addEventListener("click", (event) => {
@@ -86,9 +84,9 @@ const addImageViewListener = (image, name) => {
   image.addEventListener("click", () => {
     console.log(image.src);
     console.log(name.textContent);
+    mainImageView.src = image.src;
+    imageTitle.textContent = name.textContent;
     imageView.classList.toggle("image-view_active");
-    mainImageView = image;
-    imageTitle = name;
   });
 };
 
@@ -107,37 +105,11 @@ function getCardElement(cardName, cardImage, cardAlt = "Some Image") {
     likeButton.classList.toggle("card__like-button_active");
   });
 
-  /*
-  trashButton.addEventListener("click", (event) => {
-    //Accessing the Button: Use event.currentTarget to reference the button that was clicked
-    const clickedButton = event.currentTarget;
-    //Finding the Parent Card Element which should be the card element in the grid.
-    const cardToRemove = clickedButton.closest(".card");
-
-    //if the element has been found
-    if (cardToRemove) {
-      const cardName = cardToRemove.querySelector(".card__name").textContent;
-      const indexToRemove = initialCards.findIndex(
-        (card) => card.name[0] === cardName
-      );
-
-      if (indexToRemove !== -1) {
-        initialCards.splice(indexToRemove, 1); // Remove current card element from the array
-        cardToRemove.remove(); // Remove current card element from the DOM
-        console.log(indexToRemove, initialCards);
-      }
-    } else {
-      console.log("Card element not found");
-    }
-  });*/
-
   elementImage.src = cardImage;
   elementImage.alt = cardAlt;
   elementName.textContent = cardName;
   addTrashButtonListener(trashButton);
-  const imageUrl = cardImage;
-  const image
-  addImageViewListener(imageUrl, cardName);
+  addImageViewListener(elementImage, elementName);
 
   return cardElement;
 }
