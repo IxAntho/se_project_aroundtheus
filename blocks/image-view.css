@@ -6,7 +6,10 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   background-position: center;
-  background-size: cover;
+  background-size: contain;
+  display: flex;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center;
 }
 
 .image-view_active {
@@ -14,26 +17,28 @@
   transition: all 2s ease;
 }
 
-.image-view__containerl {
+.image-view__container {
   max-width: 816px;
-  max-height: 540px;
   width: 100%;
+  max-height: 618px;
   height: 100%;
-  position: fixed;
+  position: relative;
+
+  /*position: fixed;
   top: 20%;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -50%);*/
 }
 
 .image-view__close-button {
   background: transparent url(../images/close-icon.svg) center no-repeat;
   width: 40px;
   height: 40px;
-  position: absolute;
-  left: 430px;
-  top: -40px;
   border: none;
   transition: opacity 0.35s ease-in-out;
+  position: absolute;
+  right: -5%;
+  top: -6%;
 
   &:hover {
     opacity: 0.6;
@@ -41,7 +46,21 @@
   }
 }
 
+.image-view__image {
+  max-width: 816px;
+  width: 100%;
+  max-height: 540px;
+  height: 100%;
+  margin: 2px 0 12px 0;
+}
+
 .image-view__image-name {
   width: 100%;
   height: 100%;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  margin: 0;
 }

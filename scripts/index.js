@@ -25,26 +25,37 @@ const initialCards = [
   },
 ];
 
+//Buttons
 const editButton = document.querySelector(".profile__button_type_edit");
 const newPlaceButton = document.querySelector(".profile__button_type_add");
 const closeButtonEdit = document.querySelector(".form__close-edit");
 const closeButtonNew = document.querySelector(".form__close-new");
+const addButton = document.querySelector(".profile__button_type_add");
+const closeButtonImageView = document.querySelector(
+  ".image-view__close-button"
+);
 
+//Containers
 const modal = document.querySelector(".modal");
+const formEditProfile = document.querySelector(".form_type_edit-profile");
+const formNewPlace = document.querySelector(".form_type_new-place");
+const modalEditContainer = document.querySelector(".modal__edit-container");
+const modalNewContainer = document.querySelector(".modal__new-container");
+const cardTemplate = document.querySelector("#cardTemplate").content;
+const cardsGrid = document.querySelector(".cards__list");
+const imageView = document.querySelector(".image-view");
+
+//Fields
 const profileName = document.querySelector(".profile__heading");
 const profileAbout = document.querySelector(".profile__user-description");
 const inputName = document.querySelector(".form__input_name");
 const inputAbout = document.querySelector(".form__input_about");
 const inputPlace = document.querySelector(".form__input_place");
 const inputImage = document.querySelector(".form__input_image");
-const formEditProfile = document.querySelector(".form_type_edit-profile");
-const formNewPlace = document.querySelector(".form_type_new-place");
-const modalEditContainer = document.querySelector(".modal__edit-container");
-const modalNewContainer = document.querySelector(".modal__new-container");
-const cardTemplate = document.querySelector("#cardTemplate").content;
-const addButton = document.querySelector(".profile__button_type_add");
-const cardsGrid = document.querySelector(".cards__list");
-const count = 0;
+const mainImageView = document.querySelector(".image-view-image").src;
+const imageTitle = document.querySelector(
+  ".image-view__image-name"
+).textContent;
 
 const addTrashButtonListener = (trashButton) => {
   trashButton.addEventListener("click", (event) => {
@@ -71,7 +82,19 @@ const addTrashButtonListener = (trashButton) => {
   });
 };
 
-const addImageViewListener = (image) => {};
+const addImageViewListener = (image, name) => {
+  image.addEventListener("click", () => {
+    console.log(image.src);
+    console.log(name.textContent);
+    imageView.classList.toggle("image-view_active");
+    mainImageView = image;
+    imageTitle = name;
+  });
+};
+
+closeButtonImageView.addEventListener("click", () => {
+  imageView.classList.toggle("image-view_active");
+});
 
 function getCardElement(cardName, cardImage, cardAlt = "Some Image") {
   const cardElement = cardTemplate.cloneNode(true);
@@ -112,7 +135,9 @@ function getCardElement(cardName, cardImage, cardAlt = "Some Image") {
   elementImage.alt = cardAlt;
   elementName.textContent = cardName;
   addTrashButtonListener(trashButton);
-  addImageViewListener(elementImage);
+  const imageUrl = cardImage;
+  const image
+  addImageViewListener(imageUrl, cardName);
 
   return cardElement;
 }
