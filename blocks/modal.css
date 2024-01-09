@@ -45,7 +45,11 @@
 }
 
 @media screen and (max-width: 585px) {
-  .modal__form-container {
+  .modal__edit-container {
+    max-width: 282px;
+  }
+
+  .modal__new-container {
     max-width: 282px;
   }
 }

@@ -108,16 +108,18 @@
 }
 
 @media screen and (max-width: 585px) {
-  .form__container {
-    max-width: 282px;
-  }
-
   .form {
     padding: 25px 22px;
     max-width: 238px;
   }
 
-  .form__close-button {
+  .form__close-edit {
+    left: 245px;
+    max-width: 26px;
+    max-height: 26px;
+  }
+
+  .form__close-new {
     left: 245px;
     max-width: 26px;
     max-height: 26px;
