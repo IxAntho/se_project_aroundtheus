@@ -55,6 +55,7 @@ const inputImage = document.querySelector(".form__input_image");
 const mainImageView = document.querySelector(".image-view__image");
 const imageTitle = document.querySelector(".image-view__image-name");
 
+//event listener functions
 const addTrashButtonListener = (trashButton) => {
   trashButton.addEventListener("click", (event) => {
     //Accessing the Button: Use event.currentTarget to reference the button that was clicked
@@ -80,6 +81,7 @@ const addTrashButtonListener = (trashButton) => {
   });
 };
 
+//image view modal rendering functions
 const addImageViewListener = (image, name) => {
   image.addEventListener("click", () => {
     console.log(image.src);
@@ -94,6 +96,7 @@ closeButtonImageView.addEventListener("click", () => {
   imageView.classList.toggle("image-view_active");
 });
 
+//card rendering functions
 function getCardElement(cardName, cardImage, cardAlt = "Some Image") {
   const cardElement = cardTemplate.cloneNode(true);
   const elementImage = cardElement.querySelector(".card__image");
@@ -129,6 +132,8 @@ function renderLastCard() {
   cardsGrid.append(getCardElement(lastCardName, lastImage, lastCardAlt));
 }
 
+//modals rendering functions
+//modal edit profile
 function toggleModal() {
   modal.classList.toggle("modal_opened");
 }
@@ -156,6 +161,7 @@ function handleProfileFormEditSubmit(evt) {
 
 formEditProfile.addEventListener("submit", handleProfileFormEditSubmit);
 
+//modal new place
 function toggleModalNewPlace() {
   modal.classList.toggle("modal_opened");
   modalEditContainer.classList.toggle("modal__container_hiddenn");

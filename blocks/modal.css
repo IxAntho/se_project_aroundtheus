@@ -1,5 +1,7 @@
 .modal {
   visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.5s, opacity 0.5s linear;
   position: fixed;
   top: 0;
   width: 100%;
@@ -11,11 +13,12 @@
 
 .modal_opened {
   visibility: visible;
-  transition: all 2s ease;
+  opacity: 1;
+  transition-delay: 0s;
 }
 
 .modal__container_hidden {
-  display: none;
+  visibility: hidden;
 }
 
 .modal__edit-container {
