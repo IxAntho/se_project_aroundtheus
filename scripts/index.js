@@ -26,19 +26,19 @@ const initialCards = [
 ];
 
 //Buttons
-const editButton = document.querySelector(".profile__button_type_edit");
+const editProfileButton = document.querySelector(".profile__button_type_edit");
 const newPlaceButton = document.querySelector(".profile__button_type_add");
-const closeButtonEdit = document.querySelector(".form__close-edit");
-const closeButtonNew = document.querySelector(".form__close-new");
-const addButton = document.querySelector(".profile__button_type_add");
-const closeButtonImageView = document.querySelector(
+const editModalCloseBtn = document.querySelector(".form__close-edit");
+const newPlaceModalCloseBtn = document.querySelector(".form__close-new");
+const addProfileButton = document.querySelector(".profile__button_type_add");
+const imageViewCloseButton = document.querySelector(
   ".image-view__close-button"
 );
 
 //Containers
-const modal = document.querySelector(".modal");
-const formEditProfile = document.querySelector(".form_type_edit-profile");
-const formNewPlace = document.querySelector(".form_type_new-place");
+const profileModal = document.querySelector(".modal");
+const editProfileForm = document.querySelector(".form_type_edit-profile");
+const newPlaceForm = document.querySelector(".form_type_new-place");
 const modalEditContainer = document.querySelector(".modal__edit-container");
 const modalNewContainer = document.querySelector(".modal__new-container");
 const cardTemplate = document.querySelector("#cardTemplate").content;
@@ -57,26 +57,15 @@ const imageTitle = document.querySelector(".image-view__image-name");
 
 //event listener functions
 const addTrashButtonListener = (trashButton) => {
-  trashButton.addEventListener("click", (event) => {
+  trashButton.addEventListener("click", (evt) => {
     //Accessing the Button: Use event.currentTarget to reference the button that was clicked
-    const clickedButton = event.currentTarget;
+    const clickedButton = evt.currentTarget;
     //Finding the Parent Card Element which should be the card element in the grid.
     const cardToRemove = clickedButton.closest(".card");
 
     //if the element has been found
     if (cardToRemove) {
-      const cardName = cardToRemove.querySelector(".card__name").textContent;
-      const indexToRemove = initialCards.findIndex(
-        (card) => card.name[0] === cardName
-      );
-
-      if (indexToRemove !== -1) {
-        initialCards.splice(indexToRemove, 1); // Remove current card element from the array
-        cardToRemove.remove(); // Remove current card element from the DOM
-        console.log(indexToRemove, initialCards);
-      }
-    } else {
-      console.log("Card element not found");
+      cardToRemove.remove();
     }
   });
 };
@@ -84,15 +73,13 @@ const addTrashButtonListener = (trashButton) => {
 //image view modal rendering functions
 const addImageViewListener = (image, name) => {
   image.addEventListener("click", () => {
-    console.log(image.src);
-    console.log(name.textContent);
     mainImageView.src = image.src;
     imageTitle.textContent = name.textContent;
     imageView.classList.toggle("image-view_active");
   });
 };
 
-closeButtonImageView.addEventListener("click", () => {
+imageViewCloseButton.addEventListener("click", () => {
   imageView.classList.toggle("image-view_active");
 });
 
@@ -129,26 +116,30 @@ function renderLastCard() {
   const lastCardName = initialCards[lastIndex].name;
   const lastImage = initialCards[lastIndex].link;
   const lastCardAlt = "";
-  cardsGrid.append(getCardElement(lastCardName, lastImage, lastCardAlt));
+  const newCard = getCardElement(lastCardName, lastImage, lastCardAlt);
+  cardsGrid.append(newCard);
+
+  const trashButton = newCard.querySelector(".card__trash-button");
+  addTrashButtonListener(trashButton);
 }
 
 //modals rendering functions
 //modal edit profile
 function toggleModal() {
-  modal.classList.toggle("modal_opened");
+  profileModal.classList.toggle("modal_opened");
 }
 
 function toggleModalEdit() {
-  modal.classList.toggle("modal_opened");
+  profileModal.classList.toggle("modal_opened");
   modalNewContainer.classList.toggle("modal__container_hidden");
 }
 
-editButton.addEventListener("click", function (evt) {
+editProfileButton.addEventListener("click", function (evt) {
   toggleModalEdit();
   inputName.value = profileName.textContent;
   inputAbout.value = profileAbout.textContent;
 });
-closeButtonEdit.addEventListener("click", function (evt) {
+editModalCloseBtn.addEventListener("click", function (evt) {
   toggleModalEdit();
 });
 
@@ -159,26 +150,22 @@ function handleProfileFormEditSubmit(evt) {
   toggleModal();
 }
 
-formEditProfile.addEventListener("submit", handleProfileFormEditSubmit);
+editProfileForm.addEventListener("submit", handleProfileFormEditSubmit);
 
 //modal new place
 function toggleModalNewPlace() {
-  modal.classList.toggle("modal_opened");
-  modalEditContainer.classList.toggle("modal__container_hiddenn");
+  profileModal.classList.toggle("modal_opened");
+  modalEditContainer.classList.toggle("modal__container_hidden");
 }
 
 newPlaceButton.addEventListener("click", function (evt) {
   toggleModalNewPlace();
 });
-closeButtonNew.addEventListener("click", function (evt) {
+newPlaceModalCloseBtn.addEventListener("click", function (evt) {
   toggleModalNewPlace();
 });
 
 function handleProfileFormNewSubmit(evt) {
-  if (inputPlace.value == "" || inputImage == "") {
-    alert("Please fill in all fields");
-    return;
-  }
   evt.preventDefault();
   const newPlace = {
     name: inputPlace.value,
@@ -186,10 +173,10 @@ function handleProfileFormNewSubmit(evt) {
   };
   initialCards.push(newPlace);
   renderLastCard();
+
   inputPlace.value = "";
   inputImage.value = "";
   toggleModal();
-  console.log(initialCards);
 }
 
-formNewPlace.addEventListener("submit", handleProfileFormNewSubmit);
+newPlaceForm.addEventListener("submit", handleProfileFormNewSubmit);
