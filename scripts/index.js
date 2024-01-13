@@ -41,7 +41,9 @@ const editProfileForm = document.querySelector(".form_type_edit-profile");
 const newPlaceForm = document.querySelector(".form_type_new-place");
 const modalEditContainer = document.querySelector(".modal__edit-container");
 const modalNewContainer = document.querySelector(".modal__new-container");
-const cardTemplate = document.querySelector("#cardTemplate").content;
+const cardTemplate = document
+  .querySelector("#cardTemplate")
+  .content.querySelector(".card");
 const cardsGrid = document.querySelector(".cards__list");
 const imageView = document.querySelector(".image-view");
 
